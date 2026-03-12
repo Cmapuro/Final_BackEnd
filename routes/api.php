@@ -1,14 +1,15 @@
 <?php
+
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
-// Public
+// Public routes — no auth needed
 Route::post('/login', [AuthController::class, 'login']);
 
-// Protected
+// Protected routes — requires Bearer token
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout',  [AuthController::class, 'logout']);
     Route::get('/me',       [AuthController::class, 'me']);
